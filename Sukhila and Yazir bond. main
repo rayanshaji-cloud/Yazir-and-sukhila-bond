@@ -1,0 +1,716 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukhila & Yazir: Bond Poll | TBR TECHNOLOGIES</title>
+    <!-- Google Fonts for English and Malayalam Unicode Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#060810',
+                            900: '#0b0f19',
+                            850: '#111726',
+                            800: '#172033',
+                            700: '#23304a'
+                        },
+                        roseAccent: {
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48'
+                        },
+                        amberAccent: {
+                            400: '#fbbf24',
+                            500: '#f59e0b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        malayalam: ['Manjari', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Glowing & Aesthetic Enhancements */
+        body {
+            background-color: #060810;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(244, 63, 94, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 30%, rgba(168, 85, 247, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060810;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 5px;
+            border: 2px solid #060810;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f43f5e;
+        }
+
+        .glass-card {
+            background: rgba(17, 23, 38, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(244, 63, 94, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(244, 63, 94, 0.25);
+        }
+
+        .vote-card-option input[type="radio"]:checked + div {
+            border-color: #f43f5e;
+            background: rgba(244, 63, 94, 0.12);
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.25);
+        }
+
+        .text-gradient-rose {
+            background: linear-gradient(135deg, #fda4af 0%, #f43f5e 50%, #e11d48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef08a 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .animated-pulse-glow {
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(244, 63, 94, 0.15);
+            }
+            100% {
+                box-shadow: 0 0 40px rgba(244, 63, 94, 0.35);
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans antialiased selection:bg-rose-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-navy-950/80 backdrop-blur-xl border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl animate-bounce" role="img" aria-label="Heart pulse">❤️</span>
+                <span class="font-extrabold text-xl tracking-wide text-gradient-rose">
+                    Sukhila & Yazir Poll
+                </span>
+            </div>
+            
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide text-slate-300">
+                <a href="#home" class="hover:text-rose-400 transition-colors">Home</a>
+                <a href="#about" class="hover:text-rose-400 transition-colors">Introduction</a>
+                <a href="#poll" class="hover:text-rose-400 transition-colors">Poll</a>
+                <a href="#results" class="hover:text-rose-400 transition-colors">Results</a>
+                <a href="#contact" class="hover:text-rose-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden p-2.5 rounded-xl bg-navy-800 text-slate-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-rose-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-950 border-b border-white/10 px-6 pt-3 pb-6 space-y-4 shadow-2xl">
+            <a href="#home" class="block py-2 text-slate-200 hover:text-rose-400 font-semibold">Home</a>
+            <a href="#about" class="block py-2 text-slate-200 hover:text-rose-400 font-semibold">Introduction</a>
+            <a href="#poll" class="block py-2 text-slate-200 hover:text-rose-400 font-semibold">Poll</a>
+            <a href="#results" class="block py-2 text-slate-200 hover:text-rose-400 font-semibold">Results</a>
+            <a href="#contact" class="block py-2 text-slate-200 hover:text-rose-400 font-semibold">Contact</a>
+        </div>
+    </header>
+
+    <main id="home">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden py-24 lg:py-36 px-4 sm:px-6 lg:px-8 border-b border-white/5">
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs sm:text-sm font-semibold tracking-wide mb-8 shadow-inner">
+                    <span role="img" aria-label="Sparkles">✨</span>
+                    <span>TBR TECHNOLOGIES Official Poll</span>
+                </div>
+                <h1 class="text-5xl sm:text-7xl font-black tracking-tight text-white mb-6 leading-tight">
+                    Sukhila <span class="text-gradient-rose">&</span> Yazir
+                </h1>
+                <p class="text-2xl sm:text-3xl font-bold text-gradient-gold mb-6">
+                    An Anonymous Bond Opinion Poll
+                </p>
+                <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                    "Share your opinion respectfully. Choose an option, explain your reasoning, and help us understand different perspectives."
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                    <a href="#poll" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-bold shadow-xl shadow-rose-600/30 transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        <span>Participate in the Poll</span>
+                        <span class="ml-2 text-lg" role="img" aria-label="Arrow down">👇</span>
+                    </a>
+                    <a href="#results" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-navy-800/80 hover:bg-navy-700 text-slate-200 font-bold border border-white/10 transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-slate-400">
+                        <span>View Live Results</span>
+                        <span class="ml-2 text-lg" role="img" aria-label="Chart">📊</span>
+                    </a>
+                </div>
+                <p class="mt-10 text-xs sm:text-sm text-slate-400 italic bg-navy-850/80 inline-block px-6 py-3 rounded-xl border border-white/10 shadow-lg">
+                    "This is an informal opinion poll. The results do not determine the couple's personal decisions."
+                </p>
+            </div>
+        </section>
+
+        <!-- Introduction Section (English & Malayalam) -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- English Introduction -->
+                <div class="glass-card glass-card-hover rounded-3xl p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-6">
+                            <span class="p-3 bg-rose-500/10 text-rose-400 rounded-2xl text-2xl border border-rose-500/20">📖</span>
+                            <h2 class="text-2xl font-bold text-white">About This Poll</h2>
+                        </div>
+                        <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                            <p class="font-bold text-rose-300 text-lg">Sukhila & Yazir: Bond Poll ❤️💔</p>
+                            <comment-tag id="1"><p>Relationships can go through difficult times, and understanding different perspectives can help us reflect on a situation. This poll invites you to share your opinion on whether Sukhila and Yazir should continue their bond or consider ending their relationship.</p>
+                            <p>Choose the option that best represents your opinion and briefly explain the reason behind your choice. Your participation is voluntary, and the poll is intended only to gather opinions, not to make decisions on behalf of the people involved.</p>
+                            <p>Please participate respectfully, avoid personal attacks, and remember that the final decision about a relationship belongs to the people involved.</p></comment-tag id="1" text="Shortened the English introduction text to improve readability and conciseness while retaining the respectful intent.
+
+<p>This poll invites you to respectfully share your perspective on whether Sukhila and Yazir should continue their bond or end their relationship. Please choose an option and share a brief reason. Participation is voluntary, and final decisions rest solely with those involved.</p>" type="suggestion">
+                            <p class="font-semibold text-rose-200 pt-3 border-t border-white/10">Your opinion matters, but respect and understanding matter more.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Malayalam Introduction -->
+                <div class="glass-card glass-card-hover rounded-3xl p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-6">
+                            <span class="p-3 bg-amber-500/10 text-amber-400 rounded-2xl text-2xl border border-amber-500/20">🇮🇳</span>
+                            <h2 class="text-2xl font-bold text-white font-malayalam">ഈ വോട്ടെടുപ്പിനെക്കുറിച്ച്</h2>
+                        </div>
+                        <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed font-malayalam">
+                            <p class="font-bold text-amber-300 text-lg">സുഖില & യാസിർ: ബന്ധത്തെക്കുറിച്ചുള്ള അഭിപ്രായ വോട്ടെടുപ്പ് ❤️💔</p>
+                            <comment-tag id="2"><p>ഓരോ ബന്ധത്തിലും ചിലപ്പോൾ പ്രയാസങ്ങളും അഭിപ്രായവ്യത്യാസങ്ങളും ഉണ്ടാകാം. ഇത്തരം സാഹചര്യങ്ങളിൽ വ്യത്യസ്ത അഭിപ്രായങ്ങൾ മനസ്സിലാക്കുന്നത് കാര്യങ്ങളെ കൂടുതൽ വ്യക്തമായി ചിന്തിക്കാൻ സഹായിച്ചേക്കാം.</p>
+                            <p>സുഖിലയും യാസിറും തങ്ങളുടെ ബന്ധം തുടരണമോ അതോ ബന്ധം അവസാനിപ്പിക്കുന്നതിനെക്കുറിച്ച് ആലോചിക്കണമോ എന്ന വിഷയത്തിൽ നിങ്ങളുടെ അഭിപ്രായം രേഖപ്പെടുത്തുന്നതിനുള്ള ഒരു വോട്ടെടുപ്പാണിത്.</p>
+                            <p>നിങ്ങളുടെ അഭിപ്രായത്തിന് അനുയോജ്യമായ ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക. അതോടൊപ്പം, നിങ്ങളുടെ തീരുമാനത്തിന് പിന്നിലുള്ള കാരണം ചുരുക്കത്തിൽ എഴുതുകയും ചെയ്യുക. നിങ്ങളുടെ പങ്കാളിത്തം സ്വമേധയാ ഉള്ളതാണ്. ഈ വോട്ടെടുപ്പ് പൊതുജനങ്ങളുടെ അഭിപ്രായങ്ങൾ മനസ്സിലാക്കാൻ മാത്രമുള്ളതാണ്, ഇരുവരുടെയും ജീവിതത്തെക്കുറിച്ച് അന്തിമ തീരുമാനമെടുക്കാനുള്ളതല്ല.</p>
+                            <p>ദയവായി പരസ്പര ബഹുമാനം കാത്തുസൂക്ഷിച്ചുകൊണ്ട് നിങ്ങളുടെ അഭിപ്രായങ്ങൾ രേഖപ്പെടുത്തുക. വ്യക്തിപരമായ അധിക്ഷേപങ്ങളും അപമാനകരമായ പരാമർശങ്ങളും ഒഴിവാക്കുക.</p></comment-tag id="2" text="Shortened the Malayalam introduction for improved clarity and readability while keeping the core core tone.
+
+<p>സുഖിലയും യാസിറും തമ്മിലുള്ള ബന്ധം തുടരണമോ അതോ അവസാനിപ്പിക്കണമോ എന്ന വിഷയത്തിൽ നിങ്ങളുടെ അഭിപ്രായം ബഹുമാനപൂർവം രേഖപ്പെടുത്തുക. ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുത്ത് നിങ്ങളുടെ കാരണം വ്യക്തമാക്കുക. ഇതൊരു പൊതു അഭിപ്രായ വോട്ടെടുപ്പ് മാത്രമാണ്.</p>" type="suggestion">
+                            <p class="font-semibold text-amber-200 pt-3 border-t border-white/10">നിങ്ങളുടെ അഭിപ്രായത്തിന് പ്രാധാന്യമുണ്ട്. എന്നാൽ പരസ്പര ബഹുമാനത്തിനും മനസ്സിലാക്കലിനുമാണ് കൂടുതൽ പ്രാധാന്യം.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Polling Section -->
+        <section id="poll" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="glass-card rounded-3xl p-6 sm:p-12 shadow-2xl relative border border-rose-500/20 animated-pulse-glow">
+                <div class="text-center mb-10">
+                    <span class="text-4xl mb-3 block" role="img" aria-label="Ballot Box">🗳️</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">Cast Your Vote</h2>
+                    <p class="text-rose-400 font-malayalam text-xl mb-4 font-bold">നിങ്ങളുടെ വോട്ട് രേഖപ്പെടുത്തുക</p>
+                    <p class="text-slate-200 text-base sm:text-lg max-w-xl mx-auto font-medium">
+                        "According to your opinion, what should happen to the bond between Sukhila and Yazir?"
+                    </p>
+                    <p class="text-slate-400 text-sm sm:text-base font-malayalam mt-1">
+                        "നിങ്ങളുടെ അഭിപ്രായത്തിൽ സുഖിലയും യാസിറും തമ്മിലുള്ള ബന്ധം എന്താകണം?"
+                    </p>
+                </div>
+
+                <form id="poll-form" class="space-y-8" novalidate>
+                    <!-- Options Selection Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Option A -->
+                        <label class="vote-card-option cursor-pointer group">
+                            <input type="radio" name="voteOption" value="continue" class="sr-only" required>
+                            <div class="p-6 rounded-2xl bg-navy-850/90 border-2 border-slate-700 transition-all duration-300 group-hover:border-rose-400/50 flex flex-col h-full">
+                                <div class="flex items-start justify-between mb-4">
+                                    <span class="p-3 bg-rose-500/10 text-rose-400 rounded-xl text-3xl border border-rose-500/20" role="img" aria-label="Heart">❤️</span>
+                                    <div class="w-6 h-6 rounded-full border-2 border-slate-500 group-hover:border-rose-400 flex items-center justify-center">
+                                        <div class="w-3 h-3 bg-rose-500 rounded-full opacity-0 transition-opacity"></div>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-1">Continue Their Bond</h3>
+                                <p class="text-sm text-rose-400 font-malayalam font-bold mb-3">അവരുടെ ബന്ധം തുടരുക</p>
+                                <p class="text-xs text-slate-400 mt-auto leading-relaxed">"You believe they should continue their relationship."</p>
+                            </div>
+                        </label>
+
+                        <!-- Option B -->
+                        <label class="vote-card-option cursor-pointer group">
+                            <input type="radio" name="voteOption" value="divorce" class="sr-only" required>
+                            <div class="p-6 rounded-2xl bg-navy-850/90 border-2 border-slate-700 transition-all duration-300 group-hover:border-rose-400/50 flex flex-col h-full">
+                                <div class="flex items-start justify-between mb-4">
+                                    <span class="p-3 bg-amber-500/10 text-amber-400 rounded-xl text-3xl border border-amber-500/20" role="img" aria-label="Broken heart">💔</span>
+                                    <div class="w-6 h-6 rounded-full border-2 border-slate-500 group-hover:border-rose-400 flex items-center justify-center">
+                                        <div class="w-3 h-3 bg-rose-500 rounded-full opacity-0 transition-opacity"></div>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-1">Divorce / End Their Bond</h3>
+                                <p class="text-sm text-amber-400 font-malayalam font-bold mb-3">വിവാഹമോചനം നേടുക / ബന്ധം അവസാനിപ്പിക്കുക</p>
+                                <p class="text-xs text-slate-400 mt-auto leading-relaxed">"You believe they should consider ending their relationship."</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Required Reason Field -->
+                    <div class="space-y-2">
+                        <label for="reason-input" class="block text-sm sm:text-base font-semibold text-slate-200">
+                            Why did you choose this option? <span class="text-rose-400">*</span>
+                        </label>
+                        <p class="text-xs sm:text-sm text-rose-300 font-malayalam">നിങ്ങൾ ഈ ഓപ്ഷൻ തിരഞ്ഞെടുക്കാനുള്ള കാരണം എന്താണ്?</p>
+                        <div class="relative">
+                            <textarea id="reason-input" name="reason" rows="4" maxlength="500" required
+                                placeholder="Briefly explain the reason for your opinion...&#10;നിങ്ങളുടെ അഭിപ്രായത്തിനുള്ള കാരണം ചുരുക്കത്തിൽ എഴുതുക..."
+                                class="w-full rounded-2xl bg-navy-950 border border-slate-700 p-4 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/30 text-sm sm:text-base resize-none transition-all"></textarea>
+                            <div class="absolute bottom-3 right-3 text-xs text-slate-400 bg-navy-900/90 px-3 py-1 rounded-lg border border-white/10">
+                                <span id="char-count">0</span>/500
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Checkbox -->
+                    <div class="flex items-start space-x-3 pt-2">
+                        <input type="checkbox" id="agreement-checkbox" required
+                            class="mt-1 h-5 w-5 rounded border-slate-600 bg-navy-950 text-rose-600 focus:ring-rose-500 focus:ring-offset-navy-950 cursor-pointer">
+                        <label for="agreement-checkbox" class="text-xs sm:text-sm text-slate-300 cursor-pointer leading-relaxed">
+                            <span class="block font-medium">"I understand that this is an informal opinion poll and agree to participate respectfully."</span>
+                            <span class="block text-slate-400 font-malayalam mt-1">"ഇതൊരു അനൗപചാരിക അഭിപ്രായ വോട്ടെടുപ്പാണെന്ന് മനസ്സിലാക്കുകയും പരസ്പര ബഹുമാനത്തോടെ പങ്കെടുക്കുകയും ചെയ്യുന്നു."</span>
+                        </label>
+                    </div>
+
+                    <!-- Feedback / Error Banner -->
+                    <div id="form-feedback" class="hidden p-4 rounded-2xl text-sm font-semibold transition-all"></div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button type="submit" id="submit-btn"
+                            class="w-full py-4 px-8 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-rose-600/30 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-rose-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                            <span>Submit My Vote | എന്റെ വോട്ട് സമർപ്പിക്കുക</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <div class="flex flex-col sm:flex-row items-center justify-between mb-8 pb-6 border-b border-white/10 gap-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white flex items-center">
+                            <span class="mr-3" role="img" aria-label="Bar chart">📊</span>
+                            <span>Live Poll Results</span>
+                        </h2>
+                        <p class="text-rose-400 font-malayalam text-lg font-bold mt-1">വോട്ടെടുപ്പ് ഫലങ്ങൾ</p>
+                    </div>
+                    <div id="storage-mode-badge" class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                        Local Demo Mode
+                    </div>
+                </div>
+
+                <!-- Mode Explanation Note -->
+                <div id="mode-explanation" class="mb-8 p-4 rounded-2xl bg-navy-950/80 border border-slate-800 text-xs sm:text-sm text-slate-300">
+                    <p class="font-bold text-rose-300 mb-1">ℹ️ Database Storage Notice:</p>
+                    <p id="mode-explanation-text">Using browser localStorage for demonstration. Votes are stored only in this browser and other visitors' votes will not appear here until Firebase is configured.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-navy-950/80 border border-slate-800 rounded-2xl p-5 text-center">
+                        <span class="text-xs uppercase font-bold tracking-wider text-slate-400 block mb-1">Total Votes</span>
+                        <span id="stat-total" class="text-4xl font-black text-white">0</span>
+                    </div>
+                    <div class="bg-navy-950/80 border border-slate-800 rounded-2xl p-5 text-center">
+                        <span class="text-xs uppercase font-bold tracking-wider text-rose-400 block mb-1">Continue Bond</span>
+                        <span id="stat-continue" class="text-4xl font-black text-rose-400">0</span>
+                    </div>
+                    <div class="bg-navy-950/80 border border-slate-800 rounded-2xl p-5 text-center">
+                        <span class="text-xs uppercase font-bold tracking-wider text-amber-400 block mb-1">End / Divorce</span>
+                        <span id="stat-divorce" class="text-4xl font-black text-amber-400">0</span>
+                    </div>
+                </div>
+
+                <!-- Progress Bars -->
+                <div class="space-y-6">
+                    <!-- Option A Progress -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2 text-sm font-semibold">
+                            <span class="text-slate-200 flex items-center">
+                                <span class="mr-2">❤️</span> Continue Their Bond (<span class="font-malayalam">അവരുടെ ബന്ധം തുടരുക</span>)
+                            </span>
+                            <span id="percent-continue-label" class="font-bold text-rose-400">0%</span>
+                        </div>
+                        <div class="w-full h-4 bg-navy-950 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div id="bar-continue" class="h-full bg-gradient-to-r from-rose-600 to-pink-500 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Option B Progress -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2 text-sm font-semibold">
+                            <span class="text-slate-200 flex items-center">
+                                <span class="mr-2">💔</span> Divorce / End Bond (<span class="font-malayalam">വിവാഹമോചനം</span>)
+                            </span>
+                            <span id="percent-divorce-label" class="font-bold text-amber-400">0%</span>
+                        </div>
+                        <div class="w-full h-4 bg-navy-950 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div id="bar-divorce" class="h-full bg-gradient-to-r from-amber-500 to-rose-500 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Refresh Button -->
+                <div class="mt-8 text-center">
+                    <button id="refresh-results-btn" class="inline-flex items-center space-x-2 px-6 py-3 rounded-2xl bg-navy-800 hover:bg-navy-700 text-slate-300 text-sm font-semibold border border-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400">
+                        <span>🔄 Refresh Results</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-2xl text-center relative overflow-hidden border border-rose-500/20">
+                <span class="text-5xl mb-4 block" role="img" aria-label="Envelope">✉️</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white mb-2">Contact TBR TECHNOLOGIES</h2>
+                <p class="text-amber-300 font-malayalam text-xl font-bold mb-6">വെബ്സൈറ്റ് നിർമ്മാണത്തിനായി ബന്ധപ്പെടുക</p>
+                
+                <p class="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto mb-4 leading-relaxed font-medium">
+                    "Need a professional website for your business, personal brand, or project? Contact TBR TECHNOLOGIES to discuss your website development requirements."
+                </p>
+                <p class="text-slate-400 text-sm sm:text-base font-malayalam max-w-2xl mx-auto mb-8 leading-relaxed">
+                    "നിങ്ങളുടെ ബിസിനസിനോ വ്യക്തിഗത ബ്രാൻഡിനോ പ്രോജക്റ്റിനോ വേണ്ടി ഒരു പ്രൊഫഷണൽ വെബ്സൈറ്റ് ആവശ്യമുണ്ടോ? നിങ്ങളുടെ വെബ്സൈറ്റ് നിർമ്മാണ ആവശ്യങ്ങൾ ചർച്ച ചെയ്യാൻ TBR TECHNOLOGIES-നെ ബന്ധപ്പെടുക."
+                </p>
+
+                <div class="inline-flex items-center space-x-3 bg-navy-950/90 px-6 py-3.5 rounded-2xl border border-white/10 text-rose-300 font-mono text-sm sm:text-base mb-8 shadow-inner">
+                    <span>📧</span>
+                    <a href="mailto:techbyrayan2011@gmail.com" class="hover:underline font-bold">techbyrayan2011@gmail.com</a>
+                </div>
+
+                <div>
+                    <a href="mailto:techbyrayan2011@gmail.com?subject=Website%20Development%20Inquiry"
+                        class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-extrabold shadow-xl shadow-rose-600/30 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        <span>Contact Us via Email</span>
+                        <span class="ml-2 text-lg" role="img" aria-label="Mail">✉️</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div class="space-y-1">
+                <span class="text-lg font-bold text-white tracking-wide">Sukhila & Yazir Bond Poll</span>
+                <p class="text-xs text-slate-400">Powered by TBR TECHNOLOGIES</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-slate-300 font-semibold">
+                <a href="#home" class="hover:text-rose-400 transition-colors">Home</a>
+                <a href="#contact" class="hover:text-rose-400 transition-colors">Contact</a>
+                <a href="#about" class="hover:text-rose-400 transition-colors">Privacy Notice</a>
+            </div>
+
+            <div class="text-sm font-bold text-rose-400 tracking-wider bg-rose-500/10 px-5 py-2.5 rounded-xl border border-rose-500/30 shadow-inner">
+                ©Reserved TBR TECHNOLOGIES
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Navigation Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Character Counter
+            const reasonInput = document.getElementById('reason-input');
+            const charCount = document.getElementById('char-count');
+            const maxChars = 500;
+
+            if (reasonInput && charCount) {
+                reasonInput.addEventListener('input', () => {
+                    const currentLength = reasonInput.value.length;
+                    charCount.textContent = currentLength;
+                    if (currentLength >= maxChars) {
+                        charCount.classList.add('text-rose-400', 'font-bold');
+                    } else {
+                        charCount.classList.remove('text-rose-400', 'font-bold');
+                    }
+                });
+            }
+
+            // Radio Card Visual Styling logic
+            const radioOptions = document.querySelectorAll('input[name="voteOption"]');
+            radioOptions.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    radioOptions.forEach(r => {
+                        const dot = r.parentElement.querySelector('.bg-rose-500');
+                        if (dot) dot.classList.add('opacity-0');
+                    });
+                    if (radio.checked) {
+                        const activeDot = radio.parentElement.querySelector('.bg-rose-500');
+                        if (activeDot) activeDot.classList.remove('opacity-0');
+                    }
+                });
+            });
+
+            // Form Logic
+            const pollForm = document.getElementById('poll-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const formFeedback = document.getElementById('form-feedback');
+
+            const LOCAL_STORAGE_VOTES_KEY = 'tbr_sukhila_yazir_votes_v1';
+            const isFirebaseConfigured = typeof window.firebaseDb !== 'undefined';
+
+            updateStorageUI(isFirebaseConfigured);
+            loadAndDisplayResults();
+
+            if (pollForm) {
+                pollForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    hideFeedback();
+
+                    if (submitBtn.disabled) return;
+
+                    const selectedOptionRadio = document.querySelector('input[name="voteOption"]:checked');
+                    if (!selectedOptionRadio) {
+                        showFeedback('Please select a voting option before submitting.', 'error');
+                        return;
+                    }
+
+                    const reason = reasonInput ? reasonInput.value.trim() : '';
+                    if (!reason) {
+                        showFeedback('Please explain the reason for your choice.', 'error');
+                        reasonInput.focus();
+                        return;
+                    }
+
+                    const agreementCheckbox = document.getElementById('agreement-checkbox');
+                    if (!agreementCheckbox || !agreementCheckbox.checked) {
+                        showFeedback('Please confirm you agree to participate respectfully.', 'error');
+                        return;
+                    }
+
+                    setSubmitButtonState(true, 'Submitting your vote...');
+
+                    const voteData = {
+                        option: selectedOptionRadio.value,
+                        reason: reason,
+                        timestamp: new Date().toISOString()
+                    };
+
+                    try {
+                        if (isFirebaseConfigured) {
+                            await saveVoteToFirebase(voteData);
+                        } else {
+                            saveVoteToLocalStorage(voteData);
+                        }
+
+                        showFeedback(
+                            'Thank you! Your anonymous opinion has been recorded.<br><span class="font-malayalam text-xs">നന്ദി! നിങ്ങളുടെ അജ്ഞാത അഭിപ്രായം രേഖപ്പെടുത്തിയിരിക്കുന്നു.</span>',
+                            'success'
+                        );
+
+                        pollForm.reset();
+                        radioOptions.forEach(r => {
+                            const activeDot = r.parentElement.querySelector('.bg-rose-500');
+                            if (activeDot) activeDot.classList.add('opacity-0');
+                        });
+                        if (charCount) charCount.textContent = '0';
+
+                        await loadAndDisplayResults();
+
+                        setTimeout(() => {
+                            const resultsSection = document.getElementById('results');
+                            if (resultsSection) {
+                                resultsSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }, 800);
+
+                    } catch (error) {
+                        console.error('Submission error:', error);
+                        showFeedback('Failed to submit vote. Please check your connection and try again.', 'error');
+                    } finally {
+                        setSubmitButtonState(false, 'Submit My Vote | എന്റെ വോട്ട് സമർപ്പിക്കുക');
+                    }
+                });
+            }
+
+            function showFeedback(message, type) {
+                if (!formFeedback) return;
+                formFeedback.innerHTML = message;
+                formFeedback.classList.remove('hidden', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/30', 'bg-rose-500/10', 'text-rose-400', 'border-rose-500/30');
+                
+                if (type === 'success') {
+                    formFeedback.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/30');
+                } else {
+                    formFeedback.classList.add('bg-rose-500/10', 'text-rose-400', 'border', 'border-rose-500/30');
+                }
+            }
+
+            function hideFeedback() {
+                if (!formFeedback) return;
+                formFeedback.classList.add('hidden');
+            }
+
+            function setSubmitButtonState(disabled, text) {
+                if (!submitBtn) return;
+                submitBtn.disabled = disabled;
+                submitBtn.querySelector('span').textContent = text;
+            }
+
+            function updateStorageUI(isFirebase) {
+                const badge = document.getElementById('storage-mode-badge');
+                const explanationText = document.getElementById('mode-explanation-text');
+
+                if (isFirebase) {
+                    if (badge) {
+                        badge.textContent = 'Firebase Shared Mode';
+                        badge.className = 'px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
+                    }
+                    if (explanationText) {
+                        explanationText.textContent = 'Connected to Firebase Firestore. Votes are securely stored and aggregated in real-time across all visitors.';
+                    }
+                }
+            }
+
+            function saveVoteToLocalStorage(voteData) {
+                let votes = [];
+                try {
+                    const existing = localStorage.getItem(LOCAL_STORAGE_VOTES_KEY);
+                    if (existing) votes = JSON.parse(existing);
+                } catch (e) {
+                    votes = [];
+                }
+                votes.push(voteData);
+                localStorage.setItem(LOCAL_STORAGE_VOTES_KEY, JSON.stringify(votes));
+            }
+
+            async function saveVoteToFirebase(voteData) {
+                const { collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+                await addDoc(collection(window.firebaseDb, "sukhila_yazir_votes"), {
+                    option: voteData.option,
+                    reason: voteData.reason,
+                    timestamp: serverTimestamp()
+                });
+            }
+
+            async function loadAndDisplayResults() {
+                let counts = { continue: 0, divorce: 0, total: 0 };
+                try {
+                    if (isFirebaseConfigured) {
+                        counts = await fetchFirebaseAggregateCounts();
+                    } else {
+                        counts = fetchLocalStorageAggregateCounts();
+                    }
+                } catch (error) {
+                    console.error('Error loading results:', error);
+                }
+                renderStatistics(counts);
+            }
+
+            function fetchLocalStorageAggregateCounts() {
+                let counts = { continue: 0, divorce: 0, total: 0 };
+                try {
+                    const existing = localStorage.getItem(LOCAL_STORAGE_VOTES_KEY);
+                    if (existing) {
+                        const votes = JSON.parse(existing);
+                        votes.forEach(v => {
+                            if (v.option === 'continue') counts.continue++;
+                            if (v.option === 'divorce') counts.divorce++;
+                        });
+                        counts.total = counts.continue + counts.divorce;
+                    }
+                } catch (e) {}
+                return counts;
+            }
+
+            async function fetchFirebaseAggregateCounts() {
+                const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+                const querySnapshot = await getDocs(collection(window.firebaseDb, "sukhila_yazir_votes"));
+                let counts = { continue: 0, divorce: 0, total: 0 };
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.option === 'continue') counts.continue++;
+                    if (data.option === 'divorce') counts.divorce++;
+                });
+                counts.total = counts.continue + counts.divorce;
+                return counts;
+            }
+
+            function renderStatistics(counts) {
+                const totalEl = document.getElementById('stat-total');
+                const continueEl = document.getElementById('stat-continue');
+                const divorceEl = document.getElementById('stat-divorce');
+                const barContinue = document.getElementById('bar-continue');
+                const barDivorce = document.getElementById('bar-divorce');
+                const percentContinueLabel = document.getElementById('percent-continue-label');
+                const percentDivorceLabel = document.getElementById('percent-divorce-label');
+
+                let percentContinue = 0;
+                let percentDivorce = 0;
+
+                if (counts.total > 0) {
+                    percentContinue = Math.round((counts.continue / counts.total) * 100);
+                    percentDivorce = Math.round((counts.divorce / counts.total) * 100);
+                }
+
+                if (totalEl) totalEl.textContent = counts.total;
+                if (continueEl) continueEl.textContent = counts.continue;
+                if (divorceEl) divorceEl.textContent = counts.divorce;
+
+                if (barContinue) barContinue.style.width = `${percentContinue}%`;
+                if (barDivorce) barDivorce.style.width = `${percentDivorce}%`;
+
+                if (percentContinueLabel) percentContinueLabel.textContent = `${percentContinue}%`;
+                if (percentDivorceLabel) percentDivorceLabel.textContent = `${percentDivorce}%`;
+            }
+        });
+    </script>
+</body>
+</html>
+```
